@@ -7,12 +7,14 @@ export const Calculadora = () => {
   const [displayValue, setDisplayValue] = useState('');
 
   const handleButtonPress = (value) => {
-    if (value === '=') {
+    if (value == '=') {
       // Aquí puedes implementar la lógica para evaluar la expresión matemática
       // Por simplicidad, sumaremos dos números en este ejemplo
       const result = eval(displayValue); // Utilizamos eval() para evaluar la expresión
       setDisplayValue(result.toString()); // Actualizamos el valor mostrado en la caja con el resultado
-    } else {
+    } else if(value == 'CE'){      
+      setDisplayValue(displayValue.slice(0, -1)); // Concatenamos el valor del botón presionado al valor actual en la caja
+    } else{
       setDisplayValue(displayValue + value); // Concatenamos el valor del botón presionado al valor actual en la caja
     }
   };
@@ -24,9 +26,9 @@ export const Calculadora = () => {
       </View>
       <View style={estilos.botonescontainer}>
         <Boton texto={'%'} accion={() => handleButtonPress('%')} />
-        <Boton texto={'CE'} accion={() => handleButtonPress('')} />
-        <Boton texto={'C'} accion={() => handleButtonPress('')} />
-        <Boton texto={'X'} accion={() => handleButtonPress('')} />
+        <Boton texto={'CE'} accion={() => handleButtonPress('CE')} />
+        <Boton texto={'C'} accion={() => handleButtonPress('CE')} />
+        <Boton texto={'X'} accion={() => handleButtonPress('CE')} />
 
         <Boton texto={'1/x'} accion={() => handleButtonPress('1/x')} />
         <Boton texto={'x²'} accion={() => handleButtonPress('x²')} />
